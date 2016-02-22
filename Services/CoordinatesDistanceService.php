@@ -2,32 +2,34 @@
 
 namespace jean553\CoordinatesDistanceBundle\Services;
 
-use jean553\CoordinatesDistanceBundle\Logic\CoordinatesDistanceService;
-
 class CoordinatesDistanceService
 {
     /**
-     * @param float $firstLatitude
-     * @param float $firstLongitude
-     * @param float $secondLatitude
-     * @param float $secondLongitude
+     * @param double $firstLatitude
+     * @param double $firstLongitude
+     * @param double $secondLatitude
+     * @param double $secondLongitude
+     *
+     * @return double distance in kilometers
      */
-    float function getDistanceBetweenCoordinates(
-        float firstLatitude,
-        float firstLongitude,
-        float secondLatitude,
-        float secondLongitude
+    public function getDistanceBetweenCoordinates(
+        $firstLatitude,
+        $firstLongitude,
+        $secondLatitude,
+        $secondLongitude
     ) {
-        float distanceLatitudes = secondLatitude - firstLatitude;
-        float distanceLongitudes = secondLongitude - firstLongitude;
+        $radFirstLatitude = deg2rad($firstLatitude);
+        $radFirstLongitude = deg2rad($firstLongitude);
+        $radSecondLatitude = deg2rad($secondLatitude);
+        $radSecondLongitude = deg2rad($secondLongitude);
 
-        float a = pow(sin(distanceLatitudes / 2), 2) + 
-            cos(firstLatitude) * 
-            cos(secondLatitude) * 
-            pow(sin(distanceLongitudes / 2), 2);
-        float c = 2 * atan2(sqrt(a), sqrt(1 - a));
-        float distance = 6371 * c;
+        $distanceLatitudes = $radSecondLatitude - $radFirstLatitude;
+        $distanceLongitudes = $radSecondLongitude - $radFirstLongitude;
 
-        return distance;
+        $angle = 2 * asin(sqrt(pow(sin($distanceLatitudes / 2), 2) +
+            cos($radFirstLatitude) * cos($radSecondLatitude) * 
+            pow(sin($distanceLongitudes / 2), 2)));
+
+        return $angle * 6371;
     }
 }
