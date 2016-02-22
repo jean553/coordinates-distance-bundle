@@ -16,7 +16,7 @@ $bundles = array(
 
 ## Use
 
-```
+```php
 $service = $this->get('coordinates-distance.service');
 $distanceInKilometers = $service->getDistanceBetweenCoordinates(
     $latitudeFrom,
