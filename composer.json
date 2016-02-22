@@ -24,7 +24,7 @@
         "guzzlehttp/guzzlehttp": "~5.0"
     },
     "autoload": {
-        "psr-0": { "jean553\CoordinatesDistanceBundle": "" }
+        "psr-0": { "jean553\\CoordinatesDistanceBundle": "" }
     },
     "target-dir" : "jean553/CoordinatesDistanceBundle"
 }
