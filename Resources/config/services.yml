@@ -1,0 +1,3 @@
+services:
+    coordinates-distance.service:
+        class: jean553\CoordinatesDistanceBundle\Services\CoordinatesDistanceService
